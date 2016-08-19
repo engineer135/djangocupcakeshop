@@ -15,6 +15,16 @@ def cupcake_list(request):
     context = {"cakes": cakes}
     return render(request,"menu/list.html",context)
 
+def cupcake_high_list(request):
+    cakes = Cupcake.objects.all().order_by('-price')
+    context = {"cakes": cakes}
+    return render(request,"menu/list.html",context)
+
+def cupcake_low_list(request):
+    cakes = Cupcake.objects.all().order_by('price')
+    context = {"cakes": cakes}
+    return render(request,"menu/list.html",context)
+
 def cupcake_detail(request,pk):
     cake = get_object_or_404(Cupcake,pk=pk)
     context = {"cake": cake}

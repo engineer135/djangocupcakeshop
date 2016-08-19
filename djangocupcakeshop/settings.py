@@ -20,12 +20,24 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1dp)-1!_ghogb^g-pqg@m25&k&fjemp*#c20-wc*)oaz8t@6b5'
+# SECRET_KEY = '1dp)-1!_ghogb^g-pqg@m25&k&fjemp*#c20-wc*)oaz8t@6b5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG') != 'FALSE'
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: keep the secret key used in production secret!
+if DEBUG:
+    SECRET_KEY = 'Hell@World!'
+else:
+    SECRET_KEY = os.getenv('SECRET_KEY')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['djangocupcakeshop.pythonanywhere.com']
 
 
 # Application definition
